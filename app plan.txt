@@ -1,0 +1,3 @@
+az appservice plan create --name EntachatServicePlan --resource-group RG_mslab --sku B1 --is-Linux
+
+az webapp create --resource-group RG_mslab --plan EntachatServicePlan --name myentrachatFlaskApp --runtime "PYTHON|3.9"
