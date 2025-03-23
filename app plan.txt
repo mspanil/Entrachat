@@ -1,3 +1,15 @@
 az appservice plan create --name EntachatServicePlan --resource-group RG_mslab --sku B1 --is-Linux
 
-az webapp create --resource-group RG_mslab --plan EntachatServicePlan --name myentrachatFlaskApp --runtime "PYTHON|3.9"
+az webapp create --resource-group RG_mslab --plan EntachatServicePlan --name mychatFlaskApp --runtime "PYTHON|3.9"
+
+az webapp deployment source config-local-git --name mychatFlaskApp --resource-group RG_mslab
+
+
+az webapp deployment user set --user-name chatflask --password Restrest@123!
+
+git remote set-url azure https://chatflask:Restrest@123!@mychatflaskapp-bwckbjaxg5hydydu.scm.westus2-01.azurewebsites.net:443/mychatFlaskApp.git
+
+git remote set-url azure https://chatflask:Restrest%40123%21@mychatflaskapp-bwckbjaxg5hydydu.scm.westus2-01.azurewebsites.net:443/mychatFlaskApp.git
+
+
+az webapp config access-restriction add --resource-group RG_mslab --name mychatFlaskApp --rule-name AllowMyIP --action Allow --ip-address 52.175.255.78 --priority 100
